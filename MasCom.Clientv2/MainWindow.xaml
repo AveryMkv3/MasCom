@@ -1,0 +1,187 @@
+﻿<Window x:Class="MasCom.Clientv2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MasCom.Clientv2"
+        mc:Ignorable="d" xmlns:ExtLib="clr-namespace:MasCom.Lib;assembly=MasCom.Lib"
+        xmlns:iconsPack="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        xmlns:hc="https://handyorg.github.io/handycontrol"
+        DataContext="{Binding Path=MainVM, Source={StaticResource Locator}}" WindowState="Maximized"
+        Title="MasCom.Client" Height="700" Width="1100" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.Column="0" BorderBrush="WhiteSmoke" BorderThickness="0,0,2,0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <StackPanel Orientation="Vertical" Grid.Row="0" Margin="2,0,0,10">
+                    <TextBlock Text="Contacts" FontWeight="Bold" FontSize="16"
+                        Foreground="BlueViolet" Margin="0,0,0,2"/>
+                    <Rectangle Fill="Black" Height="1" HorizontalAlignment="Right" Width="290"/>
+                </StackPanel>
+
+                <hc:TransitioningContentControl Margin="3,0,2,5" TransitionMode="Top2Bottom" Grid.Row="1">
+                    <StackPanel Orientation="Horizontal"  Effect="{StaticResource EffectShadow1}">
+                        <TextBox Style="{StaticResource TextBoxExtend}" Height="35" Width="270"
+                          hc:BorderElement.CornerRadius="1,0,0,1" hc:InfoElement.Placeholder="Rechercher..."  
+                             BorderThickness="1,1,0,1" FontSize="15"/>
+                        <Button Content="{iconsPack:FontAwesome Kind=SearchSolid}" 
+                                hc:BorderElement.CornerRadius="0" Height="35" Background="Black" Style="{StaticResource ButtonBaseStyle}"/>
+                    </StackPanel>
+                </hc:TransitioningContentControl>
+
+                <ListBox x:Name="ContactsList" Grid.Row="2" Background="Transparent"
+                     ItemsSource="{Binding Users, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedUser}" Padding="0">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate DataType="{x:Type ExtLib:User}">
+                            <hc:Card Width="290" Margin="0,2" hc:BorderElement.CornerRadius="5">
+                                <Grid Height="55">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Grid Margin="4,0,4,0">
+                                        <hc:Gravatar Id="{Binding Id}" Background="White"
+                                                     Effect="{StaticResource EffectShadow1}" Margin="1"
+                                                     Style="{StaticResource GravatarCircle}" Height="50" Width="50"/>
+                                    </Grid>
+
+                                    <TextBlock Grid.Column="1" VerticalAlignment="Center" Margin="10,0,0,0">
+                                    <Run Text="{Binding Name}" FontSize="15"/>
+                                    <Run Text=" "/>
+                                    <Run Text="{Binding LastName}" FontSize="15"/>
+                                    </TextBlock>
+                                </Grid>
+                            </hc:Card>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+
+                <hc:Card Height="70" Grid.Row="3" Margin="1" Width="160" BorderBrush="Transparent">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" 
+                                    HorizontalAlignment="Left" Margin="0,0,0,0">
+
+                            <Button Foreground="Blue" ToolTip="Informations"
+                                    Command="{Binding ShowInfosCommand}"
+                                    hc:BorderElement.CornerRadius="30" Width="50" Height="50" Margin="0,0,-7,0">
+                                <iconsPack:FontAwesome Kind="InfoCircleSolid" Height="25" Width="25" />
+                            </Button>
+                            
+                            <Button x:Name="SettingsBtn" ToolTip="Paramètres et Réglages"
+                                    Command="{Binding OpenSettingsCommand}"
+                                 hc:BorderElement.CornerRadius="35" Width="65" Height="65" Margin="0,0,-7,0">
+                                <iconsPack:FontAwesome Kind="CogSolid" Height="35" Width="35"/>
+                            </Button>
+
+                            <Button Foreground="Red" ToolTip="Déconnexion"
+                                    Command="{Binding DisconnectCommand}"
+                                    hc:BorderElement.CornerRadius="30" Width="50" Height="50">
+                                <iconsPack:FontAwesome Kind="PowerOffSolid" Height="25" Width="25"/>
+                            </Button>
+                        </StackPanel>
+                    </Grid>
+                </hc:Card>
+            </Grid>
+        </Border>
+
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Orientation="Horizontal">
+                    <hc:Gravatar Id="{Binding SelectedUser.Id}" 
+                            Style="{StaticResource GravatarCircle}" 
+                                Height="50" Width="50" Margin="8,0,12,2"/>
+
+                    <TextBlock FontSize="25" FontWeight="Medium" VerticalAlignment="Center">
+                        <Run Text="{Binding SelectedUser.Name}" />
+                        <Run Text="{Binding SelectedUser.LastName}" />
+                    </TextBlock>
+                </StackPanel>
+
+                <hc:TransitioningContentControl TransitionMode="Right2Left" Grid.Column="1">
+                    <Border  Width="92" CornerRadius="20" Height="45" BorderThickness="1" BorderBrush="WhiteSmoke">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <Button hc:BorderElement.CornerRadius="50" Width="40" Height="40" Content="{iconsPack:FontAwesome Kind=PhoneSolid, RotationAngle=90}" Background="Transparent"/>
+                            <Button hc:BorderElement.CornerRadius="50" Width="40" Margin="5,0,0,0" Command="{Binding StartVideoCommand}"
+                                    Height="40" Content="{iconsPack:FontAwesome Kind=VideoSolid}" Background="Transparent"/>
+                        </StackPanel>
+                    </Border>
+                </hc:TransitioningContentControl>
+            </Grid>
+
+            <Border Grid.Row="1" BorderBrush="WhiteSmoke" BorderThickness="0,2,0,2">
+                <Grid>
+                    <ScrollViewer x:Name="viewPortScroller">
+                        <StackPanel x:Name="viewPort" Orientation="Vertical" 
+                                    VerticalAlignment="Bottom" ScrollViewer.CanContentScroll="True" CanVerticallyScroll="True"
+                                    ScrollViewer.VerticalScrollBarVisibility="Visible"
+                                    hc:ScrollViewer.IsInertiaEnabled="True"/>
+                    </ScrollViewer>
+                </Grid>
+            </Border>
+
+            <Border Grid.Row="2" Margin="5,0,5,5" BorderThickness="2" BorderBrush="GhostWhite" Padding="5,2" CornerRadius="20">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <hc:TextBox x:Name="TextField" Text="{Binding MessageText, Mode=TwoWay}" Style="{StaticResource TextBoxPlusBaseStyle}" Height="40" AcceptsReturn="True" AcceptsTab="True"
+                            hc:InfoElement.Placeholder="Entrez un Message ici..." Grid.Column="1"  hc:BorderElement.CornerRadius="5">
+                        <hc:TextBox.InputBindings>
+                            <KeyBinding Key="Enter" Modifiers="Ctrl" Command="{Binding SendTextMessageCommand}" CommandParameter="{Binding ElementName=TextField, Path=Text}"/>
+                        </hc:TextBox.InputBindings>
+                    </hc:TextBox>
+
+                    <StackPanel Orientation="Horizontal" Grid.Column="0">
+                        <Button Content="{iconsPack:FontAwesome Kind=FileAltRegular, Height=20, Width=20}" 
+                            Grid.Column="2" Height="40" Width="40" ToolTip="Sélectionner un Fichier..."
+                            hc:BorderElement.CornerRadius="50" Style="{StaticResource ButtonDanger}" 
+                            Foreground="Black" Effect="{StaticResource EffectShadow2}"
+                            Background="CornflowerBlue" Command="{Binding SendFileMessageCommand}"/>
+
+                        <Button Height="40" Width="40"  Margin="2,0,5,0"
+                            Style="{StaticResource ButtonDanger}" Foreground="Black" Effect="{StaticResource EffectShadow2}"
+                            BorderBrush="Black" hc:BorderElement.CornerRadius="50"
+                            Content="{iconsPack:FontAwesome Kind=MicrophoneAltSolid, Height=20, Width=20}" />
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </Grid>
+    </Grid>
+
+    <Window.Resources>
+        <DropShadowEffect x:Key="EffectShadow31"
+                          Color="Black" Opacity=".5" ShadowDepth="1" BlurRadius="8" Direction="180" />
+    </Window.Resources>
+</Window>

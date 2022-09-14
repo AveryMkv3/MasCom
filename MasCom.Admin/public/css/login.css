@@ -1,0 +1,33 @@
+.container{
+    margin-top: 80px;
+}
+form{
+    /* border: 1px solid black;    */
+    width: 550px;
+    margin: auto;
+}
+.btt {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+header{
+    background-color: #6052FF;
+    height: 60px;
+}
+header h4{
+    text-align: center;
+    color: white;
+}
+.dec{
+    /* border: 1px solid black; */
+    display: flex;
+    /* width: 200px; */
+    float: right;
+    margin-right: 10px;
+    /* margin: auto; */
+}
+.dec form{
+    width: 150px;
+}

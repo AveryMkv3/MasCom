@@ -1,0 +1,9 @@
+{
+  "serverBasePort": 5000,
+  "RestEndpointPort": 5150,
+  "serverDomainName": "localhost", //"serv3fsi.local",
+  "ConnectionStrings": {
+    "LocalStorage": "Data Source=LocalStorageDB.db",
+    "MysqlDb": "server=localhost;port=3306;user=root;password=;database=mascomdb;"
+  }
+}

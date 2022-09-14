@@ -1,0 +1,10 @@
+﻿@page "/home"
+@inject DatabaseGenerator.AppDbContext db
+@model DatabaseGenerator.Pages.IndexModel
+@{
+
+}
+
+<div>
+    @db.Users.Count()
+</div>

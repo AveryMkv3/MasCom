@@ -1,0 +1,65 @@
+﻿<Popup x:Class="MasCom.Clientv2.PopupSettingsControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MasCom.Clientv2"
+             mc:Ignorable="d"
+             xmlns:Icons="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             AllowsTransparency="True" 
+             xmlns:hc="https://handyorg.github.io/handycontrol" DataContext="{Binding SettingsVM, Source={StaticResource Locator}}">
+
+    <Border Background="#fffffb" CornerRadius="8" VerticalAlignment="Center" 
+                        Margin="10"  Padding="0" Effect="{DynamicResource EffectShadow3}" Height="540" Width="410">
+        <Grid Margin="5,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="35" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Button hc:BorderElement.CornerRadius="0" Background="Transparent" Foreground="Red"
+                Content="{Icons:FontAwesome Kind=TimesCircleSolid}" BorderBrush="Transparent"
+                    Command="{Binding CloseSettingsCommand}"
+                   VerticalAlignment="Top" HorizontalAlignment="Right" Padding="0,0,2,9" ToolTip="Fermer les paramètres"/>
+
+            <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.RowSpan="2" Margin="5,15,0,0">
+                <hc:Gravatar Id="{Binding CurrentUser.Id}" Background="White"
+                                                     Effect="{StaticResource EffectShadow1}" Margin="1"
+                                                     Style="{StaticResource GravatarCircle}" Height="80" Width="80"/>
+                <StackPanel Orientation="Vertical" Margin="15,0,0,0">
+                    <TextBlock FontSize="22" FontWeight="Bold">
+                        <Run Text="{Binding CurrentUser.Name}"/>
+                        <Run Text="{Binding CurrentUser.LastName}"/>
+                    </TextBlock>
+                    <TextBlock Text="{Binding CurrentUser.UserName}" />
+                    <TextBlock FontSize="15">
+                        <Run Text="ID: "/>
+                        <Run Text="{Binding CurrentUser.Id}"/>
+                    </TextBlock>
+                </StackPanel>
+            </StackPanel>
+            <hc:Divider Grid.Row="2" Content="Réglages"/>
+
+            <StackPanel Orientation="Vertical" Grid.Row="3">
+                <hc:SearchBar hc:InfoElement.Placeholder="Rechercher..."
+                    Style="{StaticResource SearchBarPlusBaseStyle}" Margin="1,2" hc:BorderElement.CornerRadius="0" />
+
+                <TabControl TabStripPlacement="Top" Style="{StaticResource TabControlCapsule}" Margin="1,0">
+                    <hc:TabItem Header="Compte"/>
+                    <hc:TabItem Header="Hôte"/>
+                    <hc:TabItem Header="Avancé"/>
+                </TabControl>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Grid.Row="4" HorizontalAlignment="Center" Margin="0,0,2,1">
+                <Button Content="Annuler" Style="{StaticResource ButtonDanger}" Command="{Binding CloseSettingsCommand}" 
+                        hc:BorderElement.CornerRadius="5,0,5,0" Margin="0,0,5,0"/>
+                <Button Content="Appliquer" Style="{StaticResource ButtonSuccess}" Command="{Binding SaveSettingsCommand}"
+                        hc:BorderElement.CornerRadius="5,0,5,0"/>
+            </StackPanel>
+        </Grid>
+
+    </Border>
+</Popup>

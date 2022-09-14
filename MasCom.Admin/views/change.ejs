@@ -1,0 +1,90 @@
+<%- include('header') -%>
+
+
+<div class="container">
+    <div class="row"> 
+        <div class="col-lg-12">
+            <h4>Change user</h4>
+            <form action="/change/<%= users.id %>" method="post">
+                <div class="row mb-3">
+                  <label for="username" class="col-sm-2 col-form-label">Username</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="username" value="<%= users.username %>" name="username">
+                  </div>
+                </div>
+                <div class="alert alert-primary" role="alert">
+                    Personnal Info
+                </div>
+                <div class="row mb-3">
+                    <label for="firstname" class="col-sm-2 col-form-label">First name:</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="firstname" value="<%= users.first_name %>" name="firstname">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="lastname" class="col-sm-2 col-form-label">Last name:</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="lastname" value="<%= users.last_name %>" name="lastname">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="email" class="col-sm-2 col-form-label">Email:</label>
+                    <div class="col-sm-10">
+                      <input type="email" class="form-control" id="email" value="<%= users.email %>" name="email">
+                    </div>
+                </div>
+                <div class="alert alert-primary" role="alert">
+                    Permission
+                </div>
+                <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" checked name="is_active" value="<%= users.is_active %>" id="exampleCheck1">
+                    <label class="form-check-label" for="exampleCheck1">Active</label>
+                    <div id="HelpBlock" class="form-text">
+                        Designates whether this user should be treated as active. Unselect this instead of deleting accounts.
+                    </div>
+                </div>
+                <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" name="is_staff" id="exampleCheck2" checked value="<%= users.is_staff %>">
+                    <label class="form-check-label" for="exampleCheck2">Staff status</label>
+                    <div id="HelpBlock" class="form-text">
+                        Designates whether the user can log into this admin site.
+                    </div>
+                </div>
+                <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" value="<%= users.is_superuser %>" checked name="is_superuser" id="exampleCheck3">
+                    <label class="form-check-label" for="exampleCheck3">Superuser status</label>
+                    <div id="HelpBlock" class="form-text">
+                        Designates that this user has all Permissions without explicity assigning them.
+                    </div>
+                </div>
+                <div class="alert alert-primary" role="alert">
+                    Important dates
+                </div>
+                <label for="">Last login:</label>
+                <div class="row mb-3">
+                    <label for="" class="col-sm-2 col-form-label">Date:</label>
+                    <div class="col-sm-10">
+                      <input type="datetime" class="form-control" id="" name="last_login">
+                    </div>
+                </div>
+                <label for="">Date joined:</label>
+                <div class="row mb-3">
+                    <label for="" class="col-sm-2 col-form-label">Date:</label>
+                    <div class="col-sm-10">
+                      <input type="datetime" class="form-control" id="" name="date_joined" value="<%= users.date_joined %>">
+                    </div>
+                </div>
+                <div class="form-group text-center align-items-center justify-content-center mt-4 mb-0">
+                    <input type="submit" class="btn btn-primary" value="save">
+                    <a href="/delete/<%= users.id %>" class="btn btn-danger">Delete</a>
+                    
+                </div>
+              </form>
+             
+        </div>
+    </div>
+</div>
+
+
+
+<%- include('footer') -%>

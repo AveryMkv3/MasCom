@@ -1,0 +1,45 @@
+<%- include('header') -%>
+
+<div class="container">
+    
+    <a href="/register" class="btn btn-primary">ADD USER</a>
+    <div class="row">
+        <div class="col-lg-8">
+            <h6>Select user to change</h6>
+        <form action="">
+            <div class="row mb-3">
+                <input type="search" name="" class="col-sm-9 form-control" id="">
+                <div class="col-sm-2">
+                  <input type="submit" class="form-control" id="username" name="" value="Search">
+                </div>
+        </form>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Username</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for (const users of usermodel) { %>
+                    <tr>
+                        <td><a href="/uschange/<%= users.id %>"><%= users.username %></a></td>
+                        <td><%= users.email %></td>
+                        <td><%= users.name %></td>
+                        <td><%= users.lastname %></td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<%- include('footer') -%>

@@ -1,0 +1,90 @@
+﻿<Window x:Class="MasCom.Clientv2.Connexion"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MasCom.Clientv2" xmlns:iconsPack="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        xmlns:hc="https://handyorg.github.io/handycontrol"
+        Height="400" Width="600" ResizeMode="NoResize"
+        Foreground="Black" xmlns:mah="https://handyorg.github.io/handycontrol"
+        WindowStartupLocation="CenterScreen" Name="MainWin" Visibility="{Binding ConnectionWindowVisibility}"
+        DataContext="{Binding AuthVM, Source={StaticResource Locator}}" 
+        hc:TitleElement.Foreground="Black" Title="Connexion"
+        Background="White">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="Assets/electroblue.png" Stretch="Fill" Opacity=".3" TileMode="Tile"/>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <hc:TransitioningContentControl TransitionMode="Top2Bottom">
+            <StackPanel>
+                <TextBlock HorizontalAlignment="Center" FontSize="26" TextAlignment="Center">
+            <Run Text="Bienvenue sur MasCom!"/>
+            <LineBreak/>
+            <Run Text="Entrez Vos Informations Pour Commencer"/>
+                </TextBlock>
+            </StackPanel>
+        </hc:TransitioningContentControl>
+
+        <GroupBox Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" Margin="0,-25,0,0" VerticalAlignment="Center" 
+                  Style="{StaticResource BaseStyle}" Foreground="Black" BorderBrush="#0f0130"
+                  Header="Connexion" Width="{Binding ElementName=MainWin, Path=ActualWidth}" BorderThickness="0,1,0,0" FontSize="17">
+            <Grid VerticalAlignment="Top" Margin="20,12,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <hc:TransitioningContentControl TransitionMode="Fade" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0">
+                    <TextBlock Text="ID MasCom" FontSize="16" />
+                </hc:TransitioningContentControl>
+
+                <hc:TransitioningContentControl TransitionMode="Top2Bottom" 
+                                                VerticalAlignment="Center" Grid.Row="0" Grid.Column="1" Margin="0,0,0,15">
+                    <hc:TextBox x:Name="IDField" hc:BorderElement.CornerRadius="0" Style="{StaticResource TextBoxExtend}" 
+                          hc:InfoElement.Placeholder="ID MasCom"
+                          Height="40" FontSize="18" Width="380" hc:InfoElement.Necessary="True"  Margin="5,0,0,0"/>
+                </hc:TransitioningContentControl>
+
+
+                <hc:TransitioningContentControl TransitionMode="Fade" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0">
+                    <TextBlock Text="Mot de passe" FontSize="16" />
+                </hc:TransitioningContentControl>
+
+                <hc:TransitioningContentControl TransitionMode="Bottom2Top" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center">
+                    <hc:PasswordBox x:Name="PasswordField" hc:BorderElement.CornerRadius="0" Style="{StaticResource PasswordBoxPlusBaseStyle}"
+                             hc:InfoElement.Placeholder="Mot de Passe" Margin="5,0,0,0"
+                             Height="40" FontSize="18" Width="380" ShowEyeButton="True"/>
+                </hc:TransitioningContentControl>
+
+                <hc:TransitioningContentControl TransitionMode="Left2Right" 
+                        HorizontalAlignment="Right" Grid.Row="2" Grid.Column="1" Margin="0,30,0,0">
+
+                    <Button x:Name="ConnectBtn" IsDefault="True" Cursor="Hand" Style="{StaticResource ButtonBaseStyle}"
+                        hc:BorderElement.CornerRadius="0,12,0,12" Command="{Binding ConnectCommand}" Background="#0f0130"
+                        FontSize="20" Foreground="LightYellow" Height="38" Width="150" FontFamily="Times New Roman">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Connexion"/>
+                            <iconsPack:PackIconFontAwesome Kind="CircleNotchSolid" Height="27" Width="27" Spin="True"
+                                                       Foreground="Wheat" VerticalAlignment="Center" Margin="5,0,0,0"
+                                                          Visibility="{Binding IsConnecting, Converter={StaticResource Boolean2VisibilityConverter}}" />
+                        </StackPanel>
+                    </Button>
+                    
+                </hc:TransitioningContentControl>
+            </Grid>
+        </GroupBox>
+    </Grid>
+</Window>

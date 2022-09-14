@@ -1,0 +1,23 @@
+-- Le projet MasCom est composé de 4 sous-projets
+	- MasCom.Admin : qui fournit une interface d'administration minimaliste [Réalisée avec nodejs et express]
+		- Comment Lancer le projet:
+			1- se placer dans le répertoire Chemin/Vers/MasCom.Admin en invite de commande
+			2- exécuter la commande: npm install  [Avoir NodeJs installé - versions >= 14]
+			3- exécuter la commande: node app.js  [Avoir NodeJs installé - versions >= 14]
+	
+	- Les autres projets sont
+		1 - MasCom.Client qui est le client bureau: Une application réalisé en WPF sous .Net Core [Version 3.1]
+		2-  MasCom.Server un worker service (comparable à un service windows) réalisé sous .Net Core 3.1 et qui embarque un serveur http 
+				ainsi qu'une batterie de services websocket pour assurer la transmission de messages 
+		3-  MasCom.Lib est juste une Bibliothèque de classe pour faciliter la réutilisation des classes du domaine dans les deux applications précédentes
+			
+		
+		# Comment exécuter les projets netcore et mode développement
+		1- Avoir le SDK Net Core 3.1.x installé
+		2- Se placer dans le répertoire de l'un des projets en invide de commande [Le projet MasCom.Lib ne peut être exécuté car il génère une dll qui sera par la suite utilisée dans les autres projets]
+		3- exécuter la commande: dotnet run   [Avoir une bonne connexion internet pour restaurer les packages nuget pour la première installation]
+		
+	
+	- Le sgbd utilisé est MySql. elle a été exportée sous le nom [mascomdb-MySql.sql] et est disponible à la racine du projet
+
+	

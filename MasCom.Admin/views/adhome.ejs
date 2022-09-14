@@ -1,0 +1,47 @@
+<%- include('header') -%>
+
+
+    <div class="row" style="margin-top: 25px;">
+        <div class="col-lg-10">
+            <p style="font-size: 20px;margin-left: 20px;">Select User to change</p>
+        </div>
+        <div class="col-lg-2"><a class="d-lg-flex btn btn-primary" href="#" style="width: 150px;height: 35px;font-size: 16px;background: rgb(102,111,122);text-align: center;"><i class="material-icons">add_circle_outline</i>ADD USER</a></div>
+    </div>
+    <form style="border-left-color: rgb(33, 37, 41);width: 800px; margin-left: 250px;">
+        <div class="row mb-3" style="margin-top: 25px;background: #eddede;"><input class="form-control col-sm-6" type="search" style="margin-left: 40px;">
+            <div class="col-sm-2"><button class="btn btn-primary" type="">Search</button></div>
+        </div>
+    </form>
+
+    <div class="container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Username</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">Staff Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for (const users of admin) { %>
+                    <tr>
+                        <td><a href="/change/<%= users.id %>"><%= users.username %></a></td>
+                        <td><%= users.email %></td>
+                        <td><%= users.first_name %></td>
+                        <td><%= users.last_name %></td>
+                        <td><%= users.is_staff %></td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+
+
+
+<%- include('footer') -%>

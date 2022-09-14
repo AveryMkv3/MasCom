@@ -1,0 +1,23 @@
+
+.container h5{
+    background-color: #7373df;
+    height: 30px;
+
+}
+.container h5 a{
+    text-decoration: none;
+    color: white;
+}
+.container #dav{
+    margin-top: 100px;
+}
+.row table a {
+    text-decoration: none;
+} 
+#radiv {
+    width: 700px;
+    margin-top: 70px;
+}
+#radiv form{
+    margin-top: 30px;
+}

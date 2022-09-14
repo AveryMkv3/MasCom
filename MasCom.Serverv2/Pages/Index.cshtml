@@ -1,0 +1,34 @@
+﻿@page
+@namespace MasCom.Serverv2.Pages
+@using MasCom.Serverv2
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model IndexModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>MASCOM</title>
+    <link href="~/assets/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+
+<body id="page-top" style="background-image:url(assets/image/bg-masthead.jpg);">
+   
+    <section class="d-flex masthead" >
+        <div class="container my-auto text-center">
+            <h1 class="mb-1">MASCOM</h1>
+            <h3 class="mb-5"><em>Télécharger le logiciel client</em></h3>
+            <form method="post">
+                <button type="submit" asp-page-handler="DownloadClient" class="btn btn-primary btn-xl js-scroll-trigger">Télécharger</button>
+            </form>
+            <div class="overlay"></div>
+        </div>
+    </section>
+</body>
+
+</html>
